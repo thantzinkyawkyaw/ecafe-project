@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kitchen Dashboard - Golden Spoon</title>
+    <link rel="stylesheet" href="css/kitchen.css" />
+  </head>
+
+  <body class="kitchen-body">
+    <header class="kitchen-header">
+      <h1>👨‍🍳 Kitchen Dashboard</h1>
+      <div class="kitchen-header-right">
+        <span id="kitchenRefreshInfo">Auto-refresh: 10s</span>
+        <button id="kitchenRefreshBtn" class="kitchen-refresh-btn">
+          🔄 Refresh
+        </button>
+        <span id="kitchenUserName">Kitchen Staff</span>
+        <button id="kitchenLogoutBtn" class="kitchen-logout-btn">Logout</button>
+      </div>
+    </header>
+
+    <main class="kitchen-board">
+      <section class="kitchen-column" data-status="Pending">
+        <header class="kitchen-column-header">
+          <h2>🕐 Pending</h2>
+          <span class="kitchen-count" id="countPending">0</span>
+        </header>
+        <div class="kitchen-cards" id="colPending"></div>
+      </section>
+
+      <section class="kitchen-column" data-status="Accepted">
+        <header class="kitchen-column-header">
+          <h2>✅ Accepted</h2>
+          <span class="kitchen-count" id="countAccepted">0</span>
+        </header>
+        <div class="kitchen-cards" id="colAccepted"></div>
+      </section>
+
+      <section class="kitchen-column" data-status="Preparing">
+        <header class="kitchen-column-header">
+          <h2>🔥 Preparing</h2>
+          <span class="kitchen-count" id="countPreparing">0</span>
+        </header>
+        <div class="kitchen-cards" id="colPreparing"></div>
+      </section>
+
+      <section class="kitchen-column" data-status="Ready">
+        <header class="kitchen-column-header">
+          <h2>🔔 Ready</h2>
+          <span class="kitchen-count" id="countReady">0</span>
+        </header>
+        <div class="kitchen-cards" id="colReady"></div>
+      </section>
+    </main>
+
+    <div id="kitchenToast" class="kitchen-toast" style="display: none"></div>
+
+    <script src="js/kitchen.js"></script>
+  </body>
+</html>

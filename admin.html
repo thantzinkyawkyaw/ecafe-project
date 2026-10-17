@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Golden Spoon</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+
+  <body class="admin-body">
+    <div class="admin-layout">
+      <!-- Sidebar -->
+      <aside class="admin-sidebar">
+        <div class="admin-brand">
+          🍽️ Golden Spoon
+          <span>Admin Panel</span>
+        </div>
+
+        <nav class="admin-nav">
+          <a href="#" class="admin-nav-link active" data-section="dashboard">
+            📊 Dashboard
+          </a>
+          <a href="#" class="admin-nav-link" data-section="foods"> 🍔 Foods </a>
+          <a href="#" class="admin-nav-link" data-section="categories">
+            📁 Categories
+          </a>
+          <a href="#" class="admin-nav-link" data-section="orders">
+            📋 Orders
+          </a>
+          <a href="#" class="admin-nav-link" data-section="customers">
+            👥 Customers
+          </a>
+          <a href="#" class="admin-nav-link" data-section="tables">
+            🪑 Tables
+          </a>
+          <a href="#" class="admin-nav-link" data-section="payments">
+            💳 Payments
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main -->
+      <main class="admin-main">
+        <header class="admin-header">
+          <h1 id="adminPageTitle">Dashboard</h1>
+          <div class="admin-user">
+            <span id="adminUserName">Admin</span>
+            <button id="adminLogoutBtn" class="admin-logout-btn">Logout</button>
+          </div>
+        </header>
+
+        <section id="adminContent" class="admin-content">
+          <!-- Dynamic content -->
+        </section>
+      </main>
+      <!-- Generic Modal -->
+      <div id="adminModal" class="admin-modal-overlay" style="display: none">
+        <div class="admin-modal">
+          <div class="admin-modal-header">
+            <h2 id="adminModalTitle">Modal</h2>
+            <button
+              type="button"
+              id="adminModalClose"
+              class="admin-modal-close"
+            >
+              ×
+            </button>
+          </div>
+          <div id="adminModalBody" class="admin-modal-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+  </body>
+</html>

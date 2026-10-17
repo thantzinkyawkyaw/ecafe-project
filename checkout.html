@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Checkout - Golden Spoon</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo"> Golden Spoon </a>
+
+        <nav class="navbar">
+          <a href="index.html">Home</a>
+          <a href="menu.html">Menu</a>
+          <a href="about.html">About</a>
+          <a href="index.html#contact">Contact</a>
+
+          <div id="authArea">
+            <a href="login.html">Login</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Payment Modal (KPay / WavePay) -->
+    <div id="paymentModal" class="payment-modal-overlay" style="display: none">
+      <div class="payment-modal">
+        <h2 id="paymentModalTitle">Payment</h2>
+
+        <p class="payment-modal-subtitle">
+          Order #<span id="paymentModalOrderId"></span>
+        </p>
+
+        <div class="payment-modal-amount">
+          <span>Amount:</span>
+          <strong>$<span id="paymentModalAmount">0.00</span></strong>
+        </div>
+
+        <div class="payment-modal-qr">
+          <img id="paymentModalQr" src="" alt="Payment QR" />
+        </div>
+
+        <p class="payment-modal-instruction">
+          Scan this QR with your
+          <span id="paymentModalApp">KPay</span> app, then click "I have paid".
+        </p>
+
+        <div class="payment-modal-buttons">
+          <button
+            type="button"
+            id="paymentPaidBtn"
+            class="payment-btn payment-btn-paid"
+          >
+            ✅ I have paid
+          </button>
+
+          <button
+            type="button"
+            id="paymentCancelBtn"
+            class="payment-btn payment-btn-cancel"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout -->
+    <main class="checkout-page">
+      <div class="container">
+        <h1>Checkout</h1>
+
+        <!-- Order Summary -->
+        <section class="checkout-section">
+          <h2>Order Summary</h2>
+
+          <div id="checkoutItems"></div>
+
+          <div class="checkout-total">
+            Total: $<span id="checkoutTotal">0.00</span>
+          </div>
+        </section>
+
+        <!-- Guest Mode Notice (QR scan ဖြစ်ရင် ပေါ်လာမယ်) -->
+        <div id="guestCheckoutNotice" style="display: none">
+          <p>
+            🍽️ Ordering for
+            <strong>Table <span id="guestCheckoutTable"></span></strong>
+            — Guest Mode
+          </p>
+        </div>
+        <!-- Order Type -->
+        <section class="checkout-section">
+          <h2>Order Type</h2>
+
+          <div class="order-type-options">
+            <label>
+              <input type="radio" name="orderType" value="dine-in" checked />
+              Dine-in
+            </label>
+
+            <label>
+              <input type="radio" name="orderType" value="takeaway" />
+              Takeaway
+            </label>
+
+            <label>
+              <input type="radio" name="orderType" value="delivery" />
+              Delivery
+            </label>
+          </div>
+        </section>
+
+        <!-- Payment Method -->
+        <section class="checkout-section">
+          <h2>Payment Method</h2>
+
+          <div class="payment-method-options">
+            <label>
+              <input type="radio" name="paymentMethod" value="cash" checked />
+              Cash (Pay on delivery/pickup)
+            </label>
+
+            <label>
+              <input type="radio" name="paymentMethod" value="kpay" />
+              KPay
+            </label>
+
+            <label>
+              <input type="radio" name="paymentMethod" value="wavepay" />
+              WavePay
+            </label>
+          </div>
+        </section>
+        <!-- Customer Information -->
+        <section class="checkout-section">
+          <h2>Customer Information</h2>
+
+          <form id="checkoutForm" onsubmit="event.preventDefault()">
+            <!-- Delivery Information -->
+            <div id="deliveryInfo" style="display: none">
+              <div id="deliveryLoginStatus"></div>
+              <div class="form-group">
+                <label for="checkoutName"> Name </label>
+
+                <input
+                  type="text"
+                  id="checkoutName"
+                  placeholder="Enter your name"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="checkoutPhone"> Phone </label>
+
+                <input
+                  type="tel"
+                  id="checkoutPhone"
+                  placeholder="Enter your phone number"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="checkoutAddress"> Delivery Address </label>
+
+                <textarea
+                  id="checkoutAddress"
+                  placeholder="Enter your delivery address"
+                ></textarea>
+              </div>
+
+              <div
+                class="form-group"
+                style="display: flex; align-items: center; gap: 8px"
+              >
+                <input
+                  type="checkbox"
+                  id="saveDeliveryInfo"
+                  style="width: auto"
+                />
+                <label
+                  for="saveDeliveryInfo"
+                  style="margin: 0; cursor: pointer"
+                >
+                  Save this info for next time
+                </label>
+              </div>
+            </div>
+
+            <!-- Address -->
+
+            <!-- Table Number -->
+            <div class="form-group" id="tableGroup">
+              <label for="tableNumber"> Table Number </label>
+
+              <input
+                type="number"
+                id="tableNumber"
+                placeholder="Enter table number"
+                min="1"
+              />
+            </div>
+
+            <!-- Delivery Login Gateway -->
+            <div id="deliveryGateway" style="display: none">
+              <div class="delivery-gateway-box">
+                <h3>🔒 Login Required for Delivery</h3>
+                <p>
+                  Delivery orders require an account so we can track your order.
+                </p>
+
+                <div class="gateway-buttons">
+                  <a
+                    href="login.html?redirect=checkout"
+                    class="gateway-btn gateway-btn-login"
+                  >
+                    Login
+                  </a>
+                  <a
+                    href="register.html?redirect=checkout"
+                    class="gateway-btn gateway-btn-register"
+                  >
+                    Register
+                  </a>
+                </div>
+
+                <p class="gateway-note">
+                  Your cart will be saved automatically.
+                </p>
+              </div>
+            </div>
+
+            <div id="checkoutMessage"></div>
+
+            <button type="button" class="checkout-btn" id="placeOrderButton">
+              Place Order
+            </button>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 Golden Spoon Restaurant. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Menu - Golden Spoon</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo"> Golden Spoon </a>
+
+        <nav class="navbar">
+          <a href="index.html">Home</a>
+          <a href="menu.html">Menu</a>
+          <a href="about.html">About</a>
+          <a href="index.html#contact">Contact</a>
+          <div id="authArea">
+            <a href="login.html">Login</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Guest Mode Banner (QR scan ဖြစ်ရင် ပေါ်လာမယ်) -->
+    <div id="guestBanner" style="display: none">
+      <div class="container">
+        <p>
+          🍽️ Ordering for
+          <strong>Table <span id="guestTableNumber"></span></strong>
+          — Guest Mode
+        </p>
+      </div>
+    </div>
+
+    <!-- Menu Hero -->
+    <section class="menu-hero">
+      <div class="container">
+        <h1>Our Menu</h1>
+
+        <p>Discover our delicious dishes prepared with fresh ingredients.</p>
+      </div>
+    </section>
+
+    <div class="cart-bar">
+      <div class="container">
+        <button id="cartButton">🛒 Cart (<span id="cartCount">0</span>)</button>
+      </div>
+    </div>
+
+    <!-- Menu Section -->
+    <main class="menu-page">
+      <div class="container">
+        <!--Dynamic Menu-->
+        <div id="menuContainer"></div>
+      </div>
+    </main>
+    <section class="cart-section">
+      <div class="container">
+        <h2>Your Cart</h2>
+
+        <div id="cartItems"></div>
+
+        <div class="cart-total">Total: $<span id="cartTotal">0.00</span></div>
+
+        <button id="checkoutButton" class="checkout-btn">Checkout</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 Golden Spoon Restaurant. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

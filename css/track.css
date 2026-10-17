@@ -1,0 +1,450 @@
+/* ================================
+   ORDER TRACKING — Clean Design
+================================ */
+
+.track-page {
+    padding: 40px 20px 80px;
+    min-height: 70vh;
+    background: #f5f5f5;
+}
+
+.track-wrapper {
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+/* ================================
+   MAIN CARD
+================================ */
+.track-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+/* ================================
+   HEADER
+================================ */
+.track-header {
+    padding: 28px 28px 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.track-header h1 {
+    margin: 0 0 6px 0;
+    font-size: 28px;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+}
+
+.track-header .order-meta {
+    font-size: 14px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.track-header .order-meta .dot {
+    width: 4px;
+    height: 4px;
+    background: #ccc;
+    border-radius: 50%;
+}
+
+/* ================================
+   BIG STATUS CARD
+================================ */
+.status-display {
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.status-display.status-accepted {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+}
+
+.status-display.status-preparing {
+    background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+}
+
+.status-display.status-ready {
+    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+}
+
+.status-display.status-completed {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+}
+
+.status-display.status-cancelled {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+}
+
+.status-icon {
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.status-text-block {
+    flex: 1;
+}
+
+.status-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.status-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.status-desc {
+    font-size: 14px;
+    color: #555;
+    margin: 4px 0 0 0;
+}
+
+/* ================================
+   PROGRESS BAR
+================================ */
+.progress-section {
+    padding: 24px 28px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.progress-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.progress-track {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+}
+
+.progress-track::before {
+    content: "";
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    height: 3px;
+    background: #e5e5e5;
+    z-index: 0;
+}
+
+.progress-fill {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    height: 3px;
+    background: #16a34a;
+    z-index: 1;
+    transition: width 0.4s ease;
+}
+
+.progress-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.progress-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #ccc;
+    font-weight: 700;
+    margin-bottom: 8px;
+    transition: all 0.3s;
+}
+
+.progress-step.done .progress-dot {
+    background: #16a34a;
+    border-color: #16a34a;
+    color: #fff;
+}
+.progress-step.current .progress-dot {
+    background: #ffc107;
+    border-color: #ffc107;
+    color: #000;
+    animation: pulse 1.5s infinite;
+    box-shadow: 0 0 0 6px rgba(255, 193, 7, 0.2);
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 6px rgba(255, 193, 7, 0.2); }
+    50% { box-shadow: 0 0 0 10px rgba(255, 193, 7, 0.1); }
+}
+
+.progress-step-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #bbb;
+    line-height: 1.3;
+}
+
+.progress-step.done .progress-step-label,
+.progress-step.current .progress-step-label {
+    color: #1a1a1a;
+}
+
+/* ================================
+   ITEMS
+================================ */
+.items-section {
+    padding: 24px 28px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.section-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 16px 0;
+}
+
+.item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #333;
+}
+
+.item-row + .item-row {
+    border-top: 1px solid #f5f5f5;
+}
+
+.item-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.item-qty {
+    background: #f0f0f0;
+    color: #333;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    min-width: 32px;
+    text-align: center;
+}
+
+.item-price {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+/* ================================
+   TOTAL
+================================ */
+.total-section {
+    padding: 20px 28px;
+    background: #fafafa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #666;
+}
+
+.total-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1a1a1a;
+}
+
+/* ================================
+   PAYMENT BADGE
+================================ */
+.payment-badge {
+    padding: 16px 28px;
+    background: #f9fafb;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.payment-method {
+    color: #666;
+}
+
+.payment-method strong {
+    color: #1a1a1a;
+    font-weight: 700;
+}
+
+.payment-status {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.payment-status.paid {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.payment-status.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.payment-status.failed {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* ================================
+   AUTO-REFRESH INDICATOR
+================================ */
+.refresh-indicator {
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.refresh-indicator .dot {
+    width: 8px;
+    height: 8px;
+    background: #16a34a;
+    border-radius: 50%;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* ================================
+   ACTIONS
+================================ */
+.track-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.track-btn {
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 15px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.track-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.track-btn-primary {
+    background: #ffc107;
+    color: #000;
+}
+
+.track-btn-secondary {
+    background: #fff;
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+/* ================================
+   EMPTY / ERROR STATE
+================================ */
+.track-empty {
+    background: #fff;
+    border-radius: 16px;
+    padding: 60px 30px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.track-empty .icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.track-empty h2 {
+    margin: 0 0 8px 0;
+    font-size: 22px;
+    color: #1a1a1a;
+}
+
+.track-empty p {
+    margin: 0;
+    color: #888;
+    font-size: 14px;
+}
+
+/* ================================
+   LOADING
+================================ */
+.track-loading {
+    text-align: center;
+    padding: 80px 20px;
+    color: #888;
+    font-size: 15px;
+}

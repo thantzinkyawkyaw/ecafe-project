@@ -1,7 +1,7 @@
 /* ================================
    CONFIG
 ================================ */
-const API_URL = "http://localhost:3000";
+const API_URL = window.location.origin;
 /* ================================
    AUTO LOGOUT FOR GUEST MODE
    (QR scan ဖြစ်ရင် admin/kitchen ကို auto-logout)

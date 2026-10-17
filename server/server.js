@@ -12,6 +12,7 @@ const helmet = require("helmet")
 const compression = require("compression")
 const morgan = require("morgan")
 const crypto = require("crypto")
+const fs = require("fs")
 
 const app = express();
 
@@ -318,7 +319,12 @@ function isValidId(id) {
     return Number.isInteger(num) && num > 0;
 }
 // Database
-const db = new Database(path.join(__dirname, "restaurant.db"));
+// Database folder မရှိရင် အရင်ဆောက်မယ်
+const dataDir = path.join(__dirname, "data");
+if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+}
+const db = new Database(path.join(dataDir, "restaurant.db"));
 // SQLite production tuning
 db.pragma("journal_mode = WAL");        // Concurrent reads + crash safety
 db.pragma("foreign_keys = ON");          // FK enforcement

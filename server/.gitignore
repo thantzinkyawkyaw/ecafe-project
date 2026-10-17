@@ -1,4 +1,7 @@
 node_modules/
+restaurant.db
+data/
+.db
 .env
 *.log
 *.db-journal

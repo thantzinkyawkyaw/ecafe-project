@@ -1421,7 +1421,7 @@ app.get("/api/tables/:id/qr", async function (req, res) {
     }
 
     // Frontend URL — ဒီနေရာကို ပြောင်းရင် QR က လိုက်ပြောင်းမယ်
-    const FRONTEND_URL = "http://localhost:5500";
+    const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5500";
 
     const targetUrl = `${FRONTEND_URL}/menu.html?table=${table.table_number}`;
 
